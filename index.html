@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+            #soal1,#soal2{
+                display: block;
+                margin: 20px;
+                padding:10px;
+                width: 300px;
+                border:1px solid rgb(188, 207, 219);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="soal1"></div>
+
+        <div id="soal2"></div>
+        
+        
+        <script>
+            var kata = "katak"; //Input kata yang akan diuji
+            function baca(strWord){
+                var hasil = document.getElementById("hasil");
+                var arrWord = strWord.split("");
+                var depan="";
+                var belakang="";
+                var hasil = false;
+
+                for (var i=0;i<arrWord.length; i++) {
+                    depan += arrWord[i];
+                }
+                for (var i=arrWord.length-1;i>=0; i--) {
+                    belakang += arrWord[i];
+                }
+                if (depan == belakang){
+                    hasil = true;
+                }else {
+                    hasil = false;
+                }
+                
+                var inner1 = "Soal 1<br/>Input =" + strWord +"<br/> Dibaca dari depan = "+
+                depan+"<br/>Dibaca dari belakang = "+belakang+"<br/>Hasil = "+hasil;
+                var soal1 = document.getElementById("soal1");
+                soal1.innerHTML = inner1;
+            }
+
+            baca(kata);
+
+            function sumArray(arrNum) {
+                var lastIndex = arrNum.length;
+                var diagonalA =0 ;
+                var diagonalB = 0;
+                var total = 0;
+                var strArr = "";
+                for(var i = 0; i < arrNum.length; i++){
+                    strArr += arrNum[i];
+                    console.log(i%3);
+                    if(i%3 <3){
+                        strArr +="<br/>";
+                        
+                    }
+                    diagonalA += arrNum[i][i];
+                    diagonalB += arrNum [i][--lastIndex];
+                }
+                console.log("A = "+diagonalA);
+                console.log("B = "+diagonalB);
+                total = diagonalA + diagonalB;
+                console.log("Diagonal kekanan + kekiri = "+ total);
+
+                var inner2 = "Soal 2<br/>Input =<br/>" + strArr +"<br/> Hasil  <br/> Diagonal Kekanan = "+
+                diagonalA+"<br/>Diagonal Kekiri = "+diagonalB+"<br/>Total = "+total;
+                var soal2 = document.getElementById("soal2");
+                soal2.innerHTML = inner2;
+            }
+            
+            var arr =[
+                    [11,2,4],
+                    [4,5,6],    
+                    [10,8,12]
+                ];
+
+            sumArray(arr);
+        </script>
+
+        
+    </body>
+</html>
